@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast Food</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .fastfood{
+            margin-top: 200px;
+            display: flex;
+            justify-content: space-around;
+            background-color: rgb(51, 49, 49);
+            box-sizing: border-box;
+            border-radius: 15px;
+        }
+
+
+        .fastfood h1{
+            color: rgb(246, 137, 36);
+            margin-top:10px ;
+            font-size: 35px;
+        }
+        .img img {
+            width: 400px;  
+            height: 400px;  
+            }
+
+        .lanche{
+            margin-top: 15px;
+            font-size: 20px;
+            color: #ffff;
+        }
+
+        .resultado{
+            margin-top: 10px;
+        }
+
+        .calc{
+            background-color: rgb(246, 137, 36);
+            color:#ffff;
+            padding: 15px 15px;
+            font-size: 15px;
+            border-radius: 5px;
+        }
+
+        
+        .calc:hover{
+            color:black;
+            background-color: red;
+        }
+        .res {
+            color: #fff;
+            display: none; /* Esconder o resultado inicialmente */
+        }
+    </style>
+</head>
+<body>
+    <div class="fastfood">
+        <div class="img">
+            <img src="https://i.pinimg.com/564x/84/3b/4a/843b4a2ed2fb847d97992a5224999e94.jpg" alt="cardapio" width="250">
+        </div>
+        <div class="text">
+            <h1>Peça já o seu!</h1>
+            <div class="lanche">
+                <label class="subtitulo">Escolha seu lanche</label><br><br>
+                <input type="checkbox" id="hotdog"> Hot-dog <br>
+                <input type="checkbox" id="burguer"> Burguer <br>
+                <input type="checkbox" id="fries"> Fries <br>
+                <input type="checkbox" id="pizza"> Pizza <br>
+            </div>
+            <div class="lanche">
+                <label class="subtitulo">Escolha sua bebida</label><br><br>
+                <input type="checkbox" id="shake"> Shake <br>
+                <input type="checkbox" id="coffe"> Coffee <br>
+                <input type="checkbox" id="soda"> Soda<br>
+            </div>
+
+            <div class="resultado">
+                <button class="calc" onclick="calcularPedido()">Calcular Pedido</button>
+                <br><br>
+                <p class="res" id="resultado">Temos o prazer de serví-lo (a)</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function calcularPedido() {
+            const items = [];
+            let total = 0;
+
+            // Verificando os itens de lanche selecionados e somando o preço
+            if (document.getElementById('hotdog').checked) {
+                items.push("Hot-dog");
+                total += 1;
+            }
+            if (document.getElementById('burguer').checked) {
+                items.push("Burguer");
+                total += 4;
+            }
+            if (document.getElementById('fries').checked) {
+                items.push("Fries");
+                total += 2;
+            }
+            if (document.getElementById('pizza').checked) {
+                items.push("Pizza");
+                total += 1;
+            }
+
+            // Verificando as bebidas selecionadas e somando o preço
+            if (document.getElementById('shake').checked) {
+                items.push("Shake");
+                total += 3;
+            }
+            if (document.getElementById('coffe').checked) {
+                items.push("Coffee");
+                total += 2;
+            }
+            if (document.getElementById('soda').checked) {
+                items.push("Soda");
+                total+=2;
+            }
+
+            // Exibindo o resultado na página
+            const resultado = document.getElementById('resultado');
+            if (items.length > 0) {
+                resultado.innerHTML = "Você escolheu: " + items.join(", ") + "<br>Total: $" + total.toFixed(2);
+                resultado.style.display = "block"; // Exibe o resultado
+            } else {
+                resultado.innerHTML = "Por favor, selecione ao menos um item.";
+                resultado.style.display = "block"; // Exibe a mensagem de erro
+            }
+        }
+    </script>
+</body>
+</html>
